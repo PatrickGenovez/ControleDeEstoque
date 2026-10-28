@@ -2,6 +2,7 @@ package model;
 
 import java.math.BigDecimal;
 
+
 public class Produto {
     private String nomeProduto;
     private BigDecimal preco;
@@ -18,7 +19,6 @@ public class Produto {
         this.preco = preco;
         this.qtdEstoque = qtdEstoque;
     }
-
 
     // Getters e Setters
     public String getNomeProduto() {

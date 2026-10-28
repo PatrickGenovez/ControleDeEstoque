@@ -15,6 +15,15 @@ public class ProdutoRepository {
         produtos.add(produto);
     }
 
+    public Produto buscarProduto(String nome){
+        for(Produto p : produtos){
+            if(p.getNomeProduto().equalsIgnoreCase(nome)){
+                return p;
+             }
+        }
+        return null;
+    }
+
 
     public List<Produto> getProdutos() {
         return produtos;

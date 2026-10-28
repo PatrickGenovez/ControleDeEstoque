@@ -9,7 +9,7 @@ import service.ProdutoService;
 
 public class Menu {
     Scanner scan = new Scanner(System.in);
-    
+
     private ProdutoRepository produtoRepository = new ProdutoRepository();
     private ProdutoService produtoService = new ProdutoService(produtoRepository);
 
@@ -37,7 +37,12 @@ public class Menu {
                 case 2:
                     menuListar();
                     break;
-
+                    
+                case 3:
+                    menuPesquisar();
+                    break;
+                case 0:
+                    break;
                 default:
                     System.out.println("Tente novamente, inválido!");
                     break;
@@ -49,7 +54,7 @@ public class Menu {
 
 
     public void menuCadastro(){
-        System.out.println("=== Cadastrar produto");
+        System.out.println("=== Cadastrar produto ===");
 
         System.out.print("Nome do produto: ");
         String nomeProduto = scan.nextLine();
@@ -59,6 +64,7 @@ public class Menu {
 
         System.out.print("Quantidade em estoque: ");
         int qtdEstoque = scan.nextInt();
+        scan.nextLine();
 
         Produto produto = new Produto(nomeProduto, preco, qtdEstoque);
 
@@ -67,6 +73,7 @@ public class Menu {
     }
 
     public void menuListar(){
+        System.out.println("=== Listar Produtos ===");
         for (Produto p : produtoRepository.getProdutos()) {
             System.out.println("Nome: " + p.getNomeProduto());
             System.out.println("Preço: " + p.getPreco());   
@@ -76,6 +83,20 @@ public class Menu {
     }
 
     public void menuPesquisar(){
+        System.out.println("=== Pesquisar Produto ===");
+        System.out.print("Digite o nome do produto que queira pesquisar: ");
+        String nome = scan.nextLine();
+
+        Produto produto = produtoService.buscarPorNome(nome);
+
+        if(produto != null){
+            System.out.println("Produto encontrado!");
+                System.out.println("Nome: " + produto.getNomeProduto());
+                System.out.println("Preço: " + produto.getPreco());
+                System.out.println("Quantidade em estoque: " + produto.getQtdEstoque());
+        } else {
+            System.out.println("Produto não encontrado!");
+        }
 
     }
 

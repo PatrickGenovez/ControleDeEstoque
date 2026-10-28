@@ -14,6 +14,15 @@ public class ProdutoService {
       this.produtoRepository = produtoRepository;
    }
 
+   public Produto buscarPorNome(String nome) {
+      if (nome == null || nome.trim().isEmpty()) {
+         System.out.println("Erro, insira um dado!");
+         return null;
+      }
+      return produtoRepository.buscarProduto(nome);
+   }
+
+   
    public boolean cadastrarProduto(Produto produto) {
       if (produto == null || produto.getNomeProduto() == null || produto.getNomeProduto().isEmpty()) {
          System.out.println("Erro, Tente novamente!");
