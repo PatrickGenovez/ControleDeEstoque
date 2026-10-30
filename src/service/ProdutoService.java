@@ -1,6 +1,7 @@
 package service;
 
 import java.math.BigDecimal;
+import java.util.List;
 
 import model.Produto;
 import repository.ProdutoRepository;
@@ -13,15 +14,6 @@ public class ProdutoService {
    public ProdutoService(ProdutoRepository produtoRepository) {
       this.produtoRepository = produtoRepository;
    }
-
-   public Produto buscarPorNome(String nome) {
-      if (nome == null || nome.trim().isEmpty()) {
-         System.out.println("Erro, insira um dado!");
-         return null;
-      }
-      return produtoRepository.buscarProduto(nome);
-   }
-
    
    public boolean cadastrarProduto(Produto produto) {
       if (produto == null || produto.getNomeProduto() == null || produto.getNomeProduto().isEmpty()) {
@@ -43,5 +35,33 @@ public class ProdutoService {
       System.out.println("Produto Cadastrado com sucesso!");
       return true;
    }
+
+
+   public List<Produto> listarProdutos(){
+      if(produtoRepository.getProdutos().isEmpty()){
+         System.out.println("Lista vazia!");
+      } 
+      return produtoRepository.getProdutos();
+   }
+
+
+   public Produto buscarPorNome(String nome) {
+   //1º Validação
+   if (nome == null || nome.isBlank()) {
+      System.out.println("Erro, insira um dado!");
+      return null;
+   }
+   
+   // Ele irá buscar no repo
+   Produto produto = produtoRepository.buscarProduto(nome);
+
+   //2º validação 
+   if (produto == null){
+      System.out.println("Produto não encontrado!");
+      return null;
+   } 
+   // Após passar pelas duas validações ele retorna!
+   return produto;
+}
 
 }

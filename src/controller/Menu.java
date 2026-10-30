@@ -1,6 +1,7 @@
 package controller;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Scanner;
 
 import model.Produto;
@@ -37,7 +38,6 @@ public class Menu {
                 case 2:
                     menuListar();
                     break;
-                    
                 case 3:
                     menuPesquisar();
                     break;
@@ -74,7 +74,8 @@ public class Menu {
 
     public void menuListar(){
         System.out.println("=== Listar Produtos ===");
-        for (Produto p : produtoRepository.getProdutos()) {
+
+        for (Produto p : produtoService.listarProdutos()) {
             System.out.println("Nome: " + p.getNomeProduto());
             System.out.println("Preço: " + p.getPreco());   
             System.out.println("Quantidade: " + p.getQtdEstoque());
@@ -85,19 +86,19 @@ public class Menu {
     public void menuPesquisar(){
         System.out.println("=== Pesquisar Produto ===");
         System.out.print("Digite o nome do produto que queira pesquisar: ");
-        String nome = scan.nextLine();
+        String nomePesquisa = scan.nextLine();
 
-        Produto produto = produtoService.buscarPorNome(nome);
+        Produto produto =  produtoService.buscarPorNome(nomePesquisa);
 
-        if(produto != null){
+        if(produto != null) {
+            System.out.println("====================");
             System.out.println("Produto encontrado!");
-                System.out.println("Nome: " + produto.getNomeProduto());
-                System.out.println("Preço: " + produto.getPreco());
-                System.out.println("Quantidade em estoque: " + produto.getQtdEstoque());
-        } else {
-            System.out.println("Produto não encontrado!");
+            System.out.println("====================");
+            System.out.println("Nome: " + produto.getNomeProduto());
+            System.out.println("Peço: " + produto.getPreco());
+            System.out.println("Quantidade em estoque: " + produto.getQtdEstoque());
+            System.out.println("====================");
         }
-
     }
 
     public void menuEditar(){
