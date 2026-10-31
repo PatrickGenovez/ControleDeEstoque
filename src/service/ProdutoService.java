@@ -88,4 +88,14 @@ public boolean editarNovoProduto(Produto produto, BigDecimal novoPreco, int nova
       System.out.println("Produto atualizado com sucesso!");
       return true;
    }
+
+   public boolean removerProduto(Produto produto) {
+      if(produto == null) {
+         System.out.println("Erro: produto inexistente!");
+         return false;
+      }
+      produtoRepository.removerProduto(produto);
+      System.out.println("Produto removido com sucesso!");
+      return true;
+   }
 }

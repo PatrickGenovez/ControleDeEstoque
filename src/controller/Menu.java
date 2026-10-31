@@ -43,6 +43,9 @@ public class Menu {
                 case 4:
                     menuEditar();
                     break;
+                case 5:
+                    menuRemover();
+                    break;
                 case 0:
                     break;
                 default:
@@ -133,6 +136,15 @@ public class Menu {
     }
 
     public void menuRemover() {
+        System.out.println("=== Remover Produto ===");
+        System.out.print("Digite o nome do produto que deseja remover: ");
+        String produtoRemover = scan.nextLine();
 
+        Produto produtoNomeRemover = produtoService.buscarPorNome(produtoRemover);
+
+        if (produtoNomeRemover == null) {
+            return;
+        } 
+        produtoService.removerProduto(produtoNomeRemover);
     }
 }

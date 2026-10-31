@@ -24,6 +24,9 @@ public class ProdutoRepository {
         return null;
     }
 
+    public boolean removerProduto(Produto produto) {
+        return produtos.remove(produto);
+    }
 
     public List<Produto> getProdutos() {
         return produtos;
