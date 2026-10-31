@@ -17,13 +17,13 @@ public class ProdutoRepository {
 
     public Produto buscarProduto(String nome){
         for(Produto p : produtos){
-            if(p.getNomeProduto().equalsIgnoreCase(nome)){
+            if(p.getNomeProduto().trim().equalsIgnoreCase(nome.trim())){
                 return p;
              }
         }
         return null;
     }
-    
+
 
     public List<Produto> getProdutos() {
         return produtos;
