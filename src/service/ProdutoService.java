@@ -21,6 +21,11 @@ public class ProdutoService {
          return false;
       }
 
+      if(produtoRepository.buscarProduto(produto.getNomeProduto()) != null) {
+         System.out.println("Erro: já existe um produto cadastrado com esse nome!");
+         return false;
+      }
+
       if (produto.getPreco() == null || produto.getPreco().compareTo(BigDecimal.ZERO) < 0) {
          System.out.println("Erro: O preço do produto deve ser maior que zero!");
          return false;
