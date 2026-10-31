@@ -64,4 +64,28 @@ public class ProdutoService {
    return produto;
 }
 
+public boolean editarNovoProduto(Produto produto, BigDecimal novoPreco, int novaQtd){
+
+      if (produto == null){
+         System.out.println("Erro!");
+         return false;
+      }
+
+
+      if (novoPreco == null || novoPreco.compareTo(BigDecimal.ZERO) <= 0){
+         System.out.println("Erro: o preço deve ser maior que zero!");
+         return false;
+      }
+
+      if (novaQtd < 0){
+         System.out.println("Erro: a quantidade não pode ser negativa! ");
+         return false;
+      }
+      
+      produto.setPreco(novoPreco);     
+      produto.setQtdEstoque(novaQtd);     
+
+      System.out.println("Produto atualizado com sucesso!");
+      return true;
+   }
 }

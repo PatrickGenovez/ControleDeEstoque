@@ -14,13 +14,12 @@ public class Menu {
     private ProdutoRepository produtoRepository = new ProdutoRepository();
     private ProdutoService produtoService = new ProdutoService(produtoRepository);
 
-
-    public void menuIniciar(){
+    public void menuIniciar() {
         int operacao = 0;
 
         do {
 
-            System.out.println("=== Controle de Estoque");
+            System.out.println("=== Controle de Estoque ===");
             System.out.println("[ 1 ] - Cadastrar produto");
             System.out.println("[ 2 ] - Listar produto");
             System.out.println("[ 3 ] - Pesquisar produto pelo nome");
@@ -41,26 +40,29 @@ public class Menu {
                 case 3:
                     menuPesquisar();
                     break;
+                case 4:
+                    menuEditar();
+                    break;
                 case 0:
                     break;
                 default:
                     System.out.println("Tente novamente, inválido!");
                     break;
             }
-        } while (operacao != 0) ; {
+        } while (operacao != 0);
+        {
             System.out.println("Finalizando...");
         }
     }
 
-
-    public void menuCadastro(){
+    public void menuCadastro() {
         System.out.println("=== Cadastrar produto ===");
 
         System.out.print("Nome do produto: ");
         String nomeProduto = scan.nextLine();
 
         System.out.print("Preço do produto: ");
-        BigDecimal preco =  scan.nextBigDecimal();
+        BigDecimal preco = scan.nextBigDecimal();
 
         System.out.print("Quantidade em estoque: ");
         int qtdEstoque = scan.nextInt();
@@ -72,25 +74,25 @@ public class Menu {
 
     }
 
-    public void menuListar(){
+    public void menuListar() {
         System.out.println("=== Listar Produtos ===");
 
         for (Produto p : produtoService.listarProdutos()) {
             System.out.println("Nome: " + p.getNomeProduto());
-            System.out.println("Preço: " + p.getPreco());   
+            System.out.println("Preço: " + p.getPreco());
             System.out.println("Quantidade: " + p.getQtdEstoque());
             System.out.println("=================================");
         }
     }
 
-    public void menuPesquisar(){
+    public void menuPesquisar() {
         System.out.println("=== Pesquisar Produto ===");
         System.out.print("Digite o nome do produto que queira pesquisar: ");
         String nomePesquisa = scan.nextLine();
 
-        Produto produto =  produtoService.buscarPorNome(nomePesquisa);
+        Produto produto = produtoService.buscarPorNome(nomePesquisa);
 
-        if(produto != null) {
+        if (produto != null) {
             System.out.println("====================");
             System.out.println("Produto encontrado!");
             System.out.println("====================");
@@ -101,11 +103,36 @@ public class Menu {
         }
     }
 
-    public void menuEditar(){
+    public void menuEditar() {
+        System.out.println("=== Editar Produto ===");
+        System.out.print("Digite o nome do produto que deseja editar: ");
+        String nomePesquisa = scan.nextLine();
+
+        Produto produto = produtoService.buscarPorNome(nomePesquisa);
+
+        if (produto == null) {
+            return;
+        }
+
+        System.out.println("Produto localizado: " + produto.getNomeProduto());
+        System.out.println("===============");
+        System.out.println("Dados atuais: ");
+        System.out.println("Preço: R$" + produto.getPreco());
+        System.out.println("Quantidade: " + produto.getQtdEstoque());
+
+        System.out.println("===============");
+        System.out.print("Novo preço: ");
+        BigDecimal novoPreco = scan.nextBigDecimal();
+
+        System.out.print("Nova quantidade em estoque: ");
+        int novaQtdEstoque = scan.nextInt();
+        scan.nextLine();
+
+        produtoService.editarNovoProduto(produto, novoPreco, novaQtdEstoque);
 
     }
 
-    public void menuRemover(){
-        
+    public void menuRemover() {
+
     }
 }
