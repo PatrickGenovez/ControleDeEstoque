@@ -23,8 +23,9 @@ public class Menu {
             System.out.println("[ 1 ] - Cadastrar produto");
             System.out.println("[ 2 ] - Listar produto");
             System.out.println("[ 3 ] - Pesquisar produto pelo nome");
-            System.out.println("[ 4 ] - Editar protudo");
+            System.out.println("[ 4 ] - Editar produto");
             System.out.println("[ 5 ] - Remover produto");
+            System.out.println("[ 6 ] - Resumo do estoque");
             System.out.println("[ 0 ] - Sair");
             System.out.print("Escolha a operação: ");
             operacao = scan.nextInt();
@@ -45,6 +46,9 @@ public class Menu {
                     break;
                 case 5:
                     menuRemover();
+                    break;
+                case 6:
+                    menuDoEstoque();
                     break;
                 case 0:
                     break;
@@ -100,7 +104,7 @@ public class Menu {
             System.out.println("Produto encontrado!");
             System.out.println("====================");
             System.out.println("Nome: " + produto.getNomeProduto());
-            System.out.println("Peço: " + produto.getPreco());
+            System.out.println("Preço: " + produto.getPreco());
             System.out.println("Quantidade em estoque: " + produto.getQtdEstoque());
             System.out.println("====================");
         }
@@ -146,5 +150,12 @@ public class Menu {
             return;
         } 
         produtoService.removerProduto(produtoNomeRemover);
+    }
+
+    public void menuDoEstoque() {
+        System.out.println("=== Resumo do estoque ===");
+        System.out.println("Produtos cadastrados: " + produtoService.listarProdutos().size());
+        System.out.println("Total de itens no estoque: " + produtoService.totalEstoque());
+        System.out.println("Valor total do estoque: R$" + produtoService.totalValor());
     }
 }
