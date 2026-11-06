@@ -1,6 +1,6 @@
 Sistema de Controle de Estoque (MiniMundo)
 
-O sistema deve permitir cadastrar um produto, logo após irá informar o nome do produto, o preço e a quantidade em estoque, após tudo isso ser preenchido o sistema deve validar e aprovar o cadastro. Com o cadastro completo o usuário poderá ver todos os itens que cadastrou, podendo pesquisar pelo nome do produto cadastrado que será retornado o nome, o valor e quantidade em estoque.
+O sistema deve permitir cadastrar um produto, logo após irá informar o nome do produto, o preço e a quantidade em estoque, após tudo isso ser preenchido o sistema deve validar e aprovar o cadastro. Com o cadastro completo o usuário poderá ver todos os itens que cadastrou, podendo pesquisar pelo nome do produto cadastrado que será retornado o nome, o valor e quantidade em estoque, o resumo geral do estoque deve retornar quantidade total de produtos e o valor total do estoque.
 
 Requisitos Funcionais 
 RF01 - Cadastrar produto 
@@ -8,6 +8,7 @@ RF02 - Listar produtos
 RF03 - Pesquisar produto pelo nome
 RF04 - Editar produto 
 RF05 - Remover Produto
+RF06 - Resumo geral do estoque 
 
 Requisitos não Funcionais
 RNF01 - O sistema deve ser executado via interfface de linha de comando 
@@ -24,6 +25,10 @@ RN05 - Caso o produto pesquisado não exista, o sistema deve retornar uma mensag
 informando que nenhum produto foi encontrado sem encerrar a execução.
 RN06 - O usuário não pode editar um item que não existe
 RN07 - Não deve ser permitido cadastar dois produtos com o mesmo nome (ou mesmo código/ID)
+RN08 - Quantidade total de produtos não pode ser menor que zero
+RN09 - Valor total do estoque não pode ser menor que zero
+RN10 - Caso um item for removido do estoque o valor total do estoque deverá diminuir
+RN11 - Caso não haja nenhum produto cadastrado, o sistema deve exibir os totais zerados(0 itens e R$0,00) sem gerar erro de execução
 
 Entidade Atributos
 
