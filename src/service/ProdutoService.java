@@ -103,4 +103,33 @@ public boolean editarNovoProduto(Produto produto, BigDecimal novoPreco, int nova
       System.out.println("Produto removido com sucesso!");
       return true;
    }
+   
+   public int totalEstoque() {
+      int total = 0;
+
+      if(total < 0){
+         System.out.println("Erro:");
+      } else {
+         for(Produto p :produtoRepository.getProdutos()){
+         total += p.getQtdEstoque();
+         }
+      }
+      return total;
+   }
+
+   public BigDecimal totalValor() {
+
+      BigDecimal total = BigDecimal.ZERO;
+
+      if(produtoRepository.getProdutos() == null){
+         System.out.println("R$0,00 ");
+         return null;
+      }
+      for(Produto p : produtoRepository.getProdutos()){
+            BigDecimal valor = p.getPreco().multiply(BigDecimal.valueOf(p.getQtdEstoque()));
+         
+            total = total.add(valor);
+         }
+         return total;
+   }
 }
